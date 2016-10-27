@@ -8,11 +8,18 @@
 volatile unsigned int direction = 0;
 volatile unsigned int speed = 8;
 
+/*
+ * the LEDs on this board are splitted to two Ports P3.x and PJ.x
+ */
 void lightning(int lights) {
 	P3OUT = lights & 0xF0;
 	PJOUT = lights & 0x0F;
 }
 
+/*
+ * wait function
+ * volatile to prevent optimization!
+ */
 void dda(void) {
 	volatile unsigned int t = (3*speed-2) * 10000;
 	while (t > 0) {
@@ -20,6 +27,9 @@ void dda(void) {
 	}
 }
 
+/*
+ *select the next LED, select the first one if there is no next one.
+ */
 unsigned int next(unsigned int light) {
 	if (light == 0b10000000) {
 		return 0b00000001;
@@ -33,6 +43,9 @@ unsigned int prev(unsigned int light) {
 	return light / 2;
 }
 
+/*
+ * choose next or previous LED in dependence of the direction boolean set by Interrupt
+ */
 unsigned int wich(unsigned int light) {
 	if (direction == 0)
 		return next(light);
@@ -40,7 +53,7 @@ unsigned int wich(unsigned int light) {
 }
 
 int main(void) {
-	unsigned int light = 0b00000001;
+	unsigned int light =1;
 
 	WDTCTL = WDTPW | WDTHOLD;	// Stop watchdog timer
 
@@ -61,7 +74,6 @@ int main(void) {
 
 	P3OUT = 0;					//clear output LEDs
 	PJOUT = 0;
-	P1OUT &= ~BIT1;
 
 
 	for (;;) {
@@ -71,10 +83,7 @@ int main(void) {
 		if((P1IN & BIT0) == 0b00000000)
 			break;
 	}
-	lightning(0xFF);
-	speed = 5;
-	dda();
-	lightning(0);
+
 	return 0;
 }
 
