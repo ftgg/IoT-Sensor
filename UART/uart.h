@@ -23,7 +23,7 @@
 //enum uart_USCI_module_state{idle, working};
 
 ////SFR
-//enum uart_transmit_interrupt {disabled, enabled};
+//enum  {disabled, enabled};
 //enum uart_receive_interrupt {disabled, enabled};
 ////SFR transmission state
 //enum uart_transmit_state {not_ready, ready};
@@ -40,6 +40,8 @@ struct uart_baud_config {
 }typedef uart_baud_config;
 
 struct uart_config {
+	char uart_interface_nr;		//0,
+
 	////UCAxCTL0 or USCI_Ax Control Register
 	uint16_t parity;			//enabled=UCPEN
 	uint16_t parity_mode;		//odd=0, even=UCPAR
@@ -56,6 +58,13 @@ struct uart_config {
 	/*refers to next frame*/
 	uint16_t tx_adr_marker;		//data, address			//only valid for address-bit multiprocessor mode || UCTXADDR
 	uint16_t transmit_break;	//no_break, is_break
+
+	//UCAxIE
+	uint16_t uart_transmit_complete_interrupt; //enable = UCTXCPTIE
+	uint16_t uart_startbit_interrupt;	//enable = UCSTTIE
+	uint16_t uart_transmit_interrupt; //enable = UCTXIE
+	uint16_t uart_receive_interrupt;  //enable = UCRXIE
+
 
 	/*BaudRateConfiguration*/
 	uart_baud_config * baud_rate;

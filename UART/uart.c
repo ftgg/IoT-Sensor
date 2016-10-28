@@ -7,6 +7,14 @@
 #include "uart.h"
 #include <msp430.h>
 
+struct uart_interface {
+	unsigned int * usci_ctrl_w;
+	unsigned int * bitrate_ctrl_w;
+	unsigned int * modulation_ctrl_w;
+	unsigned int * interrupt_enable;
+
+}typedef uart_interface;
+
 int uart_default_init() {
 	uart_baud_config baud = { UCSSEL1, 3, 0x92, 0, 0 };
 
@@ -34,6 +42,21 @@ int uart_default_init() {
 	uart_init(&uconf);
 }
 
+int get_uart_interface(char index, uart_interface * ui) {
+	const struct uart_interface interface_list[] = { { UCA0CTLW0, UCA0BRW,
+			UCA0MCTLW, UCA0IE }, { UCA1CTLW0, UCA1BRW, UCA1MCTLW, UCA1IE } };
+
+	if (index <0 || index >1)
+		return -1;
+
+	ui->bitrate_ctrl_w = interface_list[index].bitrate_ctrl_w;
+	ui->interrupt_enable = interface_list[index].interrupt_enable;
+	ui->modulation_ctrl_w = interface_list[index].modulation_ctrl_w;
+	ui->usci_ctrl_w = interface_list[index].usci_ctrl_w;
+
+	return 0;
+}
+
 int uart_init(uart_config * uc) {
 
 	/*Clear Register and set resetmode*/
@@ -51,6 +74,13 @@ int uart_init(uart_config * uc) {
 	UCA1MCTLW |= uc->baud_rate->UCOS;
 	UCA1MCTLW |= uc->baud_rate->UCBRFx << 4;
 	UCA1MCTLW |= uc->baud_rate->UCBRSx << 8;
+
+	/*Interrupt enable*/
+	UCA1IE &= 0xFFF0;
+	UCA1IE |= uc->uart_startbit_interrupt;
+	UCA1IE |= uc->uart_transmit_complete_interrupt;
+	UCA1IE |= uc->uart_receive_interrupt;
+	UCA1IE |= uc->uart_transmit_interrupt;
 
 	UCA1CTLW0 &= ~1;
 
