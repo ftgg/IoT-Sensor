@@ -1,6 +1,6 @@
 1	Group	#Pins	Conn	Restrict	Function	Definition	<Part Family>	Category	Spice Category	Mfr	
 ADUM1201BRZ 	[3]	8					Digital-Isolatoren				
-AS1108	[1]	20		s			PMIC				
+AS1108	[1]	20					PMIC				
 C+4,7µF -  F931C475MAA	[10]	2					 Tantal-Kondensatoren				
 C10nF - CC1206KRX7R9BB103	[8]	2					Keramikkondensatoren				
 C47pf - CC1206JRNPO9BN470	[7]	2					 Keramikkondensatoren				
