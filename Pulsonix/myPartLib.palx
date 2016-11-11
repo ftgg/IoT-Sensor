@@ -1,4 +1,5 @@
 1	Group	#Pins	Conn	Restrict	Function	Definition	<Part Family>	Category	Spice Category	Mfr	
+7SEG LDQ-M286RI	[12]	12					Anzeigenmodule				
 ADUM1201BRZ 	[3]	8					Digital-Isolatoren				
 AS1108	[1]	20					PMIC				
 C+4,7µF -  F931C475MAA	[10]	2					 Tantal-Kondensatoren				
