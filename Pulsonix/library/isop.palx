@@ -1,0 +1,12 @@
+1	Group	#Pins	Conn	Restrict	Function	Definition	<Part Family>	Category	Spice Category	Mfr	
+93LC66	[9]	8					93LC66				
+AD7782B	[11]	16					AD7782				
+ADR4520BRZ	[4]	8					ADR45				
+ADT7301	[10]	6					ADTxxxx				
+BAS45AL	[12]	2					BAS45				
+BAT54S	[14]	3					BAT54				
+BZV55-B3V6	[13]	2					BZV55				
+DRO-2k7@100MHz	[5]	2					FERRITE BEAD				
+PBU 1x20	[3]	20	c				Präzisions-Buchsenleiste				
+SMD-Crystal 32,768kHz	[6]	2					CM315D				
+STL 1x2	[7]	2	c				Stiftleiste				
