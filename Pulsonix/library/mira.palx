@@ -1,0 +1,17 @@
+1	Group	#Pins	Conn	Restrict	Function	Definition	<Part Family>	Category	Spice Category	Mfr	
+CC-nF010V050-SAK	[10]	2					SMD-Keramikkondensator				
+CC-nF100V050-SAK	[11]	2					SMD-Keramikkondensator				
+CC-uF2,2V050-SAK	[14]	2					SMD-Keramikkondensator				
+CC-uF001V050-SAK	[12]	2					SMD-Keramikkondensator				
+CC-uF010V016-SAK	[13]	2					SMD-Keramikkondensator				
+MLCC-nF010V050-SAN	[16]	2					SMD-Keramikkondensator				
+MLCC-nF100V050-SAK	[15]	2					SMD-Keramikkondensator				
+MLCC-nF330V050-SAK	[17]	2					SMD-Keramikkondensator				
+RM-K001,0000-0H	[8]	2					SMD-Widerstand				
+RM-K010,0000-0H	[4]	2					SMD-Widerstand				
+RM-K100,0000-0H	[7]	2					SMD-Widerstand				
+RM-R000,0000-0H	[3]	2					SMD-Widerstand				
+RM-R001,0000-1H	[9]	2					SMD-Widerstand				
+RM-R010,0000-0H	[2]	2					SMD-Widerstand				
+RM-R100,0000-0H	[6]	2					SMD-Widerstand				
+RM-R390,0000-0H	[5]	2					SMD-Widerstand				
