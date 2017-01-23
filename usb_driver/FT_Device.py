@@ -11,7 +11,7 @@ class D2XXException (Exception):
 class FT_Device(object):
    def __init__(self,id):
       self.handle = id
-      self.endian = 'big'
+      self.endian = 'little'
       
    def openDevice(dev_id=0):
       handle = c_int()
@@ -27,9 +27,8 @@ class FT_Device(object):
          raise D2XXException("Configuration ERROR - {}".format(FT_State(state)))
    
    # big or little
-   def setEndian(self,endian):
-      self.endian = endian
-      
+   def setEndian(self, type="little"):
+      self.endian=type    
      
    def close(self):
       d2xx.FT_Close(self.handle)
@@ -58,23 +57,24 @@ class FT_Device(object):
       if (FT_State(state) != FT_State.FT_OK):
          raise D2XXException("READ ERROR - {} | {} bytes read.".format(FT_State(state),count))
       return buffer.raw[:count.value]
-   
+  
    
    #returns incomming char as int in correct order for self.endian
-   def check_endian(self,char):
-      if(self.endian == "big"):
+   def convert_endian(self,char):
+      if(self.endian == "little"):
          return self.swap_bits(char)
       return int("".join(self.getBinArray(char)),2)   # string or int to int!
      
    #returns incomming char as integer.
    def swap_bits(self,char):
-
       old = self.getBinArray(char)        #convert incoming char to binary array
       cLength = len(old)               
       new = [None] * cLength;             #make a new list with reversed data [1,2,3] -> [3,2,1]
       for i in range(cLength):
          new[i] = old[(cLength-1) - i]    #swap them
       lsgString = "".join(new)            #make array to string
+      while len(lsgString) < 8:
+         lsgString = lsgString + "0"
       return int(lsgString,2)             #binärzahl
    
    #ret
@@ -88,15 +88,13 @@ class FT_Device(object):
 
    def write(self, data):
       n_bytes = len(data)
-      print(data)
       buffer = create_string_buffer(n_bytes)
       for i in range(n_bytes):
-         buffer[i] = c_char(data[i].to_bytes(1, byteorder=self.endian))
-         print(buffer[i])
+         buffer[i] = c_char(self.convert_endian(data[i]))
       count = c_int()
       state = d2xx.FT_Write(self.handle,buffer,n_bytes,byref(count))
       if (FT_State(state) != FT_State.FT_OK):
-         raise D2XXException("READ ERROR - {} | {} bytes written.".format(FT_State(state),count))
+         raise D2XXException("WRITE ERROR - {} | {} bytes written.".format(FT_State(state),count))
       return count.value
    
    def writeString(self,data):
@@ -112,6 +110,7 @@ class FT_Device(object):
       state = d2xx.FT_SetBaudRate(self.handle, baud)
       if (FT_State(state) != FT_State.FT_OK):
          raise D2XXException("Set Baudrate ERROR - {} | for Baudrate = {}".format(FT_State(state),baud))
+
 
 # TEST     
 def testRoutine():
@@ -143,14 +142,12 @@ def test_Endian():
    #2.
    #wenn Zahl als char übergeben wird, zahl zu int umwandeln oder als char behalten ?
    #also '5' = 0b0101 oder 0b110101 ?
-   little.endian="little"
-   print("128 (dezimal)\tbig: {}  \tlittle: {}".format(big.check_endian(128),little.check_endian(128)))
-   print("'5' ({})\tbig: {}  \tlittle: {}".format(bin(ord('5'))[2:],big.check_endian('5'),little.check_endian('5')))
+   little.setEndian("little")
+   print("128 (dezimal)\tbig: {}  \tlittle: {}".format(big.convert_endian(128),little.convert_endian(128)))
+   print("'5' ({})\tbig: {}  \tlittle: {}".format(bin(ord('5'))[2:],big.convert_endian('5'),little.convert_endian('5')))
    for i in range(97,123):
       j = chr(i)
-      print("'{}' ({})\tbig: {}  \tlittle: {}".format(j, bin(ord(j))[2:],big.check_endian(j),little.check_endian(j)))
+      print("'{}' ({})\tbig: {}  \tlittle: {}".format(j, bin(ord(j))[2:],big.convert_endian(j),little.convert_endian(j)))
 
-
-
-test_Endian()
+#test_Endian()
 #input("fertig =)")
