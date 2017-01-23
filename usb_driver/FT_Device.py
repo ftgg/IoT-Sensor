@@ -125,11 +125,13 @@ def testRoutine():
    input("clr DTR")
    device.clearDTR()
    input("set RTS")
+   
    device.setRTS()
    input("clr RTS")
    device.clearRTS()
    device.write("ABCDEFG".encode('utf-8'))
-   device.writeString("ABCDEFGHIJKL")
+   while 1:
+      device.writeString("ABCDEFGfgggggggggggggggggHIJKL")
    device.close()
 
 def test_Endian():
