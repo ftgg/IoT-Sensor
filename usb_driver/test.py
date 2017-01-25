@@ -6,4 +6,4 @@ except D2XXException as err:
    print(err.message)
 
 while 1:
-   print(msp.read(1))
+   print(msp.read(4))
