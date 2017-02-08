@@ -27,37 +27,34 @@ void write(int device, char reg, char data);
  */
 int main(void) {
     WDTCTL = WDTPW | WDTHOLD;	// Stop watchdog timer
-    char init_sequ[2] = {0x0E, 0b00001001};
-    char test [2]= {0x0F, 0x00};
-    char scanLimit [2] = {0x0B, 0x03};
-    char leavesd[2] = {0x0C, 0x81};
-    char number0[2] = {0x01,0x00};
-    char number1[2] = {0x02,0b00000101};
-
-    init_spi_registers(0);
-  	//spi_write(0,init_sequ,2);		//init feature Register
-  	//spi_write(0,test,2);
-  	//spi_write(0,leavesd,2);
-  	//spi_write(0,scanLimit,2);
-
-
-  	//spi_write(0,number0,2);
-  	//spi_write(0,number1,2);
-
-    write(0,OP_FEATURE,0b00000000);
-
-    write(0,OP_DISPLAYTEST,0);
-    write(0,OP_SCANLIMIT,3);
-    //write(0,OP_DECODEMODE,0);
-    write(0,OP_DIGIT0,1);
-    write(0,OP_DIGIT1,2);
-    write(0,OP_DIGIT2,3);
-    write(0,OP_DIGIT3,4);
-    //write(0,OP_SHUTDOWN,0x80);
 
     char i = 0;
-  	while(1)
-  		write(0,OP_FEATURE,i++);
+
+    init_spi_registers(0);
+    write(0,OP_DISPLAYTEST, 0x01);
+    write(0,OP_SHUTDOWN, !0x80);
+    write(0,OP_SCANLIMIT,!0);
+
+    //write(0,OP_FEATURE,0b00001000);
+
+    //write(0,OP_DISPLAYTEST,0);
+    //write(0,OP_SCANLIMIT,255 - 3);
+    //write(0,OP_DECODEMODE,0);
+    //write(0,OP_DIGIT0,1);
+    //write(0,OP_DIGIT1,2);
+    //write(0,OP_DIGIT2,3);
+    //write(0,OP_DIGIT3,4);
+    //write(0,!OP_SHUTDOWN, 1);
+
+    //write(0,OP_DISPLAYTEST, 0x01);
+
+    //write(0,OP_INTENSITY, 0);
+  	while(1){
+  		int volatile wait = 0;
+  		write(0,OP_DIGIT0,i++);
+  		//write(0,OP_DISPLAYTEST,i++ & 0x01);
+  		while(++wait < 10000);
+  	}
 
 	return 0;
 }
