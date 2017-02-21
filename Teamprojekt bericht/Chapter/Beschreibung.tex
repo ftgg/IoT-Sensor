@@ -1,0 +1,41 @@
+%
+\chapter{Das Projekt}
+\label{chap:beschreibung}
+
+\section{Projekt Beschreibung}
+Im Rahmen des Studiums ist ein mit 12 ECTS gewichtetes Teamprojekt vorgesehen.
+Das Projekt IoT Sensor kombiniert drei selbst erstellte Platinen zu einem funktionierenden System.
+
+Auf der Hauptplatine wird ein Mikrocontroller der Art MSP470FR und drei PMOD Schnittstellen angebracht. Über die PMOD Stecker soll mit den anderen Board kommuniziert werden.
+
+Die Kommunikationsplatine wird mit USB am PC verbunden und mithilfe des FT231X auf UART umgewandelt. Das umgewandelte Signal wird dann über einen PMOD Stecker via UART an das Main-Board weitergeleitet. auf der Platine befindet sich auch eine galvanische Trennung, welche den Stromkreis des Computers vom Stromkreis des Mikrocontrollers trennt. Hierfür ist der ADUM1401 verantwortlich, welcher das Signal über Lichtwellen weiter gibt.
+
+Die Anzeige Platine stellt eine 7 Segmentanzeige zur Verfügung, welche die Visualisierung von Beispielsweise Sensorwerten übernimmt. hierzu Dient der AS1108 welcher die Übersetzung einer Zahl auf die Sieben Segmentanzeige übernimmt. Die Zahlen werden über SPI vom Mainboard erhalten.
+
+Die Sensorplatine, nicht teil des Projekts, wird auch über SPI angesprochen und liefert Messwerte an das Main-Board. Kann bei bedarf  bereits Fertig gekauft werden.
+
+\section{Arbeitsschritte}
+
+\subsection{Bauteilsuche}
+Nachdem die Vorgabe vollständig ist, kann mit der Bauteilsuche begonnen werden. Einige Teile waren auch bereits vorgegeben. Kriterien beim auswählen der Bauteile waren:
+
+\begin{itemize}
+	\item die Funktion, Angaben müssen erfüllt werden
+	\item die Verfügbarkeit, Teile müssen einzeln bestellbar und auch in Zukunft noch Angeboten sein
+	\item der Preis
+\end{itemize}
+
+\subsection{Platinen Design}
+Nachdem alle Teile gefunden sind und auch alle Datenblätter vorliegen, kann mit dem Design der Platine begonnen werden.
+hierzu haben wir das Tool Pulsonix verwendet, nachdem der Schaltplan hierin entworfen war, konnte das Schematic erstellt werden, die größte Hürde hierbei war das einstellen des korrekten Rasters für Bauteile und Vias.
+zu beachten war, dass manche Bauteile möglichst nah an anderen Bauteilen angebracht werden, so zb beim FT231X, wo ein differentielles Signal anlag.
+Auch zu beachten war an den PMOD Steckern sollten zwei Kondensatoren angebracht werden um Störsignale welche beispielsweise beim anstecken entstehen raus zu filtern.
+
+\subsection{Hardware bestücken}
+Die Hardware wurde bei \url{www.digikey.com} bestellt und war innerhalb kurzer zeit angeliefert. Um die Platinen zu bestellen, mussten zunächst Gerberfiles erstellt werden, welche dann an Q-print electronic GmbH geschickt wurde.
+Zum bestücken der Platine war Teamarbeit gefragt, während einer das Bauteil möglichst exakt auf den kleinen Pads positioniert muss der Zweite das erste Beinchen fest löten. die wohl größte Herausforderung hierbei war das befestigen des FT321X auf der Kommunikationsplatine. Nachdem diese Herausforderung gemeistert war, stellten die anderen Bauteile keine größeren Probleme mehr dar.
+Als Änderung für neue Platinen wäre bei der Anzeigenplatine ein Größerer $RSET$ Widerstand einzubauen, da der eingebaute 10 $k\Omega$ etwas zu klein dimensioniert ist. wenigstens 11,35 $k\Omega$ siehe Datenblatt AS1108 Seite 9.
+
+\subsection{Softwareentwicklung}
+Es musste nicht nur ein Treiber für den MSP geschrieben werden um über UART und SPI mit unseren Boards zu kommunizieren, sondern auch ein Treiber, welcher die Kommunikation zwischen PC und Kommunikationsplatine übernimmt. Die genauere beschreibung folgt im nächsten Kapitel.
+

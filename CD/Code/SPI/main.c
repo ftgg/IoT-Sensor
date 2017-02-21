@@ -1,0 +1,63 @@
+#include <msp430.h> 
+#include "spi.h"
+
+
+#define OP_NOOP   0
+
+#define OP_DIGIT0 1
+#define OP_DIGIT1 2
+#define OP_DIGIT2 3
+#define OP_DIGIT3 4
+
+#define OP_FEATURE 0x0E
+
+#define OP_DECODEMODE  9
+#define OP_INTENSITY   10
+#define OP_SCANLIMIT   11
+#define OP_SHUTDOWN    12
+#define OP_DISPLAYTEST 15
+
+void write(int device, char reg, char data);
+
+
+
+/*
+ * main.c
+ */
+int main(void) {
+    WDTCTL = WDTPW | WDTHOLD;	// Stop watchdog timer
+
+    char i = 0;
+
+    init_spi_registers(0);
+    write(0,OP_DISPLAYTEST, 0x01);
+    write(0,OP_SHUTDOWN, !0x80);
+    write(0,OP_SCANLIMIT,!0);
+
+    //write(0,OP_FEATURE,0b00001000);
+
+    //write(0,OP_DISPLAYTEST,0);
+    //write(0,OP_SCANLIMIT,255 - 3);
+    //write(0,OP_DECODEMODE,0);
+    //write(0,OP_DIGIT0,1);
+    //write(0,OP_DIGIT1,2);
+    //write(0,OP_DIGIT2,3);
+    //write(0,OP_DIGIT3,4);
+    //write(0,!OP_SHUTDOWN, 1);
+    //write(0,OP_DISPLAYTEST, 0x01);
+    //write(0,OP_INTENSITY, 0);
+
+  	while(1){
+  		int volatile wait = 0;
+  		write(0,OP_DIGIT0,i++);
+  		//write(0,OP_DISPLAYTEST,i++ & 0x01);
+  		while(++wait < 10000);
+  	}
+
+	return 0;
+}
+
+void write(int device, char reg, char data){
+	char array[2] = {reg,data};
+	spi_write(device,array,2);
+}

@@ -1,0 +1,27 @@
+\begin{thebibliography}{1}
+
+\bibitem{gbr}
+Geschäftsbericht continental, 2015.
+\newblock URL:
+  \url{http://report.conti-online.com/pages/management-report/corporate-profile/cp-divisions/cp-divisions_de.html}.
+
+\bibitem{AD}
+Active directory, May 2016.
+\newblock URL: \url{https://de.wikipedia.org/wiki/Active_Directory}.
+
+\bibitem{BitLocker}
+Jan Schüßler.
+\newblock Verschlüsselungssache windows-laufwerke mit bitlocker schützen.
+\newblock {\em c't 2015 Heft 14}, (14), 2015.
+
+\bibitem{rest}
+Vlan, May 2016.
+\newblock URL: \url{https://de.wikipedia.org/wiki/Virtual_Local_Area_Network}.
+
+\bibitem{KBVMH}
+Margaret Rouse.
+\newblock Kernel-based virtual machine hypervisor, August 2016.
+\newblock URL:
+  \url{http://www.searchdatacenter.de/definition/KVM-Hypervisor-Kernel-based-Virtual-Machine-Hypervisor}.
+
+\end{thebibliography}

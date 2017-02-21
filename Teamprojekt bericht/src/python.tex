@@ -1,0 +1,132 @@
+\begin{lstlisting}[style=PYTHON,frame=single,
+ caption=Zum einlesen der Mundharmonika Schwingung
+ captionpos=b,
+ label=lst:read] 
+ import numpy as np
+ from TekTDS2000 import *
+ 
+ scope = TekTDS2000()
+ 
+ input()
+ scope.saveCsv(filename='mic1000Hz.csv', ch=2)
+ scope.saveCsv(filename='sig1000Hz.csv', ch=1)
+ scope.plot(filename='mic1000Hz.png', ch=2)
+ scope.plot(filename='sig1000Hz.png', ch=1)
+ scope.getSamplingInterval()
+ scope.getRecordLength()
+ # ausgabe bei nachmessung:
+ #TekTDS2000: Sampling interval: 2e-06 s
+ #TekTDS2000: Record length: 2500
+ \end{lstlisting}
+ 
+  
+  \begin{lstlisting}[style=PYTHON,frame=single,
+   caption=Zum umwandeln der Mundharmonika Schwingung
+   captionpos=b,
+   label=lst:v1d]
+   import numpy as np
+   import matplotlib.pyplot as plt
+   
+   #Periodendauer
+   def periodendauer():
+       input_data = np.genfromtxt('tone.csv', delimiter=',')
+       my_data = input_data[:,1:2];
+       
+       plt.figure(figsize=(10, 5), dpi=800)
+       plt.xticks(range(0,271,10))
+       plt.plot(my_data[0:270], label='Signal')
+       plt.plot((44, 44), (-0.008, 0.008), 'k-', color='red')      # anfang Periode
+       plt.plot((153, 153), (-0.008, 0.008), 'k-', color='red')    # ende Periode
+       plt.ylabel("Amplitude")
+       plt.xlabel("Abtastzeitpunkt")
+       plt.text(57, -0.0065, '$periodendauer = 109 * 10^{-5} s$', fontsize=14)
+       plt.legend()
+       plt.show()
+   
+   
+   # Fouriertransformation
+   def mach_fft(data):
+       fft = np.abs(np.fft.fft(data, axis=0))
+       plt.figure(figsize=(10, 5), dpi=800)
+       plt.xlabel("Frequenz [$Hz$]")
+       plt.ylabel("Amplitude")
+       plt.plot(range(0,16000,40), fft[:400], label="Fourierdomäne")   # gekürzt bei 400, rest uninteressant
+       plt.plot((910, 910), (3, 0), 'k-', color='red',label="Grundschwingung = 910 Hz") # Grundfrequenz
+       #plt.plot((1820, 1820), (3, 0), 'k-', color='red') # 1 Harmonische
+       #plt.plot((2730, 2730), (3, 0), 'k-', color='red') # 2 Harmonische
+       plt.legend()
+       plt.show()
+   \end{lstlisting}
+ 
+ \begin{lstlisting}[style=PYTHON,frame=single,
+  caption=Erstellen der Grafiken
+  captionpos=b,
+  label=lst:plot]
+  import numpy as np
+  import matplotlib.pyplot as plt
+  
+  # vergleich der Eingangsspannung zum mikrophon Signal
+  def ein_ausgang():
+      input_sig = np.genfromtxt('sig1000Hz.csv', delimiter=',')
+      input_mic = np.genfromtxt('mic1000Hz.csv', delimiter=',')    
+      
+      plt.figure(figsize=(8, 5), dpi=800)
+      plt.xticks(range(0,2501,250))
+      plt.ylabel("Amplitude")
+      plt.xlabel("Abtastzeitpunkt")
+      resize_mic = input_mic[:,1:2] * 40  # mal 40, da mikrophonsignal etwa 40 mal schwächer ist
+      plt.plot(input_sig[:,1:2], color='y', label='1kHz Eingang')
+      plt.plot(resize_mic, color='b', label='Ausgang')
+      plt.plot((845, 845), (-1, 1), '-', color='red',label='Phasenverschiebung')
+      plt.plot((940, 940), (-1, 1), '-', color='red')
+      plt.legend()
+      plt.show()
+  
+  
+  # Bode-Diagramm für Amplitude
+  def amplitude(datak, datag, x):
+      datak = datak / 1500   # normierung
+      datak = np.log10(np.abs(datak))
+      datak = datak * 20    # dB
+      datag = datag / 1500   # normierung
+      datag = np.log10(np.abs(datag))
+      datag = datag * 20    # dB
+      plt.figure(figsize=(8, 5), dpi=800)   
+      plt.semilogx(x, datak, label="kleiner Lautsprecher")
+      plt.semilogx(x, datag, label="großer Lautsprecher")
+      plt.xlabel("Frequenz")
+      plt.ylabel("Amplitudengang [$dB$]")
+      plt.legend()
+      plt.show()
+  
+  
+  # Bode-Diagramm für Phasengang
+  def phase(datak, datag, x):
+      plt.figure(figsize=(8, 5), dpi=800)   
+      plt.semilogx(x, datak, label="kleiner Lautsprecher")
+      plt.semilogx(x, datag, label="großer Lautsprecher")
+      plt.xlabel("Frequenz")
+      plt.ylabel("Phasengang")
+      plt.legend()
+      plt.show()
+      
+  # Beispielaufruf:
+  # x = alle Messwerte, amplitude_gross = alle gemessenen Amplitudenwerte
+  # zur jeweiligen frequenz, siehe Tabelle im Bericht
+  
+  #x = np.array([100,200,300,400,500,700,850,1000,1200,1500,1700,2000,3000,4000,5000,6000,10000])
+  
+  #amplitude_gross = np.array([50.2,134.0,95.2,60.4,49.2,
+  #                   39.6,43.2,42.0,35.2,33.6,
+  #                   30.8,32.0,37.6,46.0,26.8,
+  #                   19.4,15.4])
+  
+  #amplitude_klein = np.array([6.6,10.4,15.0,23.8,34.6,
+  #                   70.0,68.0,50.0,40.0,52.8,
+  #                   53.6,51.2,50.4,52.0,12.8,
+  #                   8.2,19.4])
+                 
+  #amplitude(amplitude_klein, amplitude_gross, x)
+  
+ \end{lstlisting}
+ 
