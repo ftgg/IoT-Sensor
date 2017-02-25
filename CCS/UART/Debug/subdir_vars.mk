@@ -7,21 +7,21 @@ CMD_SRCS += \
 ../lnk_msp430fr5739.cmd 
 
 C_SRCS += \
-../main.c 
+../uart.c 
 
 OBJS += \
-./main.obj 
+./uart.obj 
 
 C_DEPS += \
-./main.d 
+./uart.d 
 
 C_DEPS__QUOTED += \
-"main.d" 
+"uart.d" 
 
 OBJS__QUOTED += \
-"main.obj" 
+"uart.obj" 
 
 C_SRCS__QUOTED += \
-"../main.c" 
+"../uart.c" 
 
 

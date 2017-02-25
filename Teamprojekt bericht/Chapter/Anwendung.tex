@@ -6,17 +6,30 @@
 Für die Programmierung, um auf das Kommunikationsboard zugreifen zu können, haben wir uns für Python entschieden, da es hier relativ einfache und schnelle wege gibt um c librarys einzubinden und zu benutzen.  Wir greifen hier auf die vom Hersteller bereitgestellte library "ftd2xx" zurück.
 
 \subsection{MSP430connect.py}
-dieses Script dient zur simplen Übertragung eines durch CCS erstellten Programms über die Kommunikationsplatine auf den Microcontroller. Dieses Script kann sowohl mit Parameter -p [Dateipfad] ausgeführt werden, wobei dann lediglich das Programm heruntergeladen wird und anschließend das Programm beendet, oder ohne Parameter um es als CLI zu benutzen, mit dem Parameter h kann eine kleine Hilfe zum Programm angezeigt werden. Wie die Das Programm zum herunterladen auf den Microkontroller mit CCS erstellt werden muss, wird auch hier beschrieben.
+Dieses Script dient zur Übertragung eines durch CCS erstellten Programms mithilfe des USB-UART-Konverters auf den Microcontroller. Es kann mit dem Parameter -p [Dateipfad] ausgeführt werden, wobei dann das Programm heruntergeladen wird. Wird es ohne Angabe von Parametern gestartet öffnet sich ein textuelles Benutzerinterface. Mit dem Parameter h kann eine kleine Hilfe zum Programm angezeigt werden. Wie die Das Programm zum herunterladen auf den Microkontroller mit CCS erstellt werden muss, wird auch in dieser beschrieben.
 Das Script verwendet unseren MSP430.py Treiber, welcher einfache Methoden zum öffnen eines Devices, lesen und schreiben sowie zurücksetzen dieses Devices anbietet. Diese Methoden können für weitere Programme genutzt werden.
 
-\section{C}
+
+\subsection{Übersicht Dateien}
+
+\begin{tabular}{|l|p{11cm}| }
+\hline
+Dateiname & Beschreibung \\ \hline
+FT\_declarations.py & Enthält Deklarationen für den Wrapper des FT2XX \\ \hline
+FT\_Device.py & Wrapper-Klasse für die Kommunikation mit dem FT2XX. \\ \hline
+MSP430.py	& Klasse, zur Kommunikation mit dem Bootstraploader. Bietet Funktionen zum Schreiben, Lesen der seriellen Schnittstelle. Weiter auch die Funktion, um ein Programm auf den Microkontroller zu laden. \\ \hline
+ProgrammContainer.py  & Hilfsklasse zum Parsen und Speichern des Programms, das auf den Mikrokontroller zu laden ist. \\ \hline
+\end{tabular} 
+
+
+\section{C-Code}
 
 \subsection{Einstiegs Codes}
-da wir uns das erste mal mit CCS und dem MSP430FR befassen, haben wir uns zunächst ein paar simple Anwendungen überlegt um ein Gefühl für die Umgebung zu bekommen.Hierzu haben wir vor allem die auf dem Experimentierboard angebrachten LEDs als ausgabe verwendet um möglichst schnell und einfach Feedback zu erhalten. Eine einfache Anwendung war das erstellen eines Lauflichts, welches über Tastendruck zusätzlich beeinflusst werden konnte \tiny(CD\textbackslash Code\textbackslash runled.c)\normalsize. Auch den auf dem Board eingebauten Wärmesensor haben wir ausgelesen und dessen wert direkt an die LEDs angelegt \tiny(CD\textbackslash Code\textbackslash adc.c)\normalsize. Dass sich die Zahl beim auflegen des Fingers auf den Sensor verändert hat war ein kleines aber feines Erfolgserlebnis.
+Da wir uns das erste mal mit CCS und dem MSP430FR befassen, haben wir uns zunächst ein paar simple Anwendungen überlegt um ein Gefühl für die Umgebung zu bekommen. Hierzu haben wir vor allem die auf dem Experimentierboard angebrachten LEDs als Ausgabe verwendet um möglichst schnell und einfach ein Feedback zu erhalten. Eine einfache Anwendung war das erstellen eines Lauflichts, welches über Tastendruck zusätzlich beeinflusst werden konnte \tiny(CD\textbackslash Code\textbackslash runled.c)\normalsize. Auch den auf dem Board eingebauten Wärmesensor haben wir ausgelesen und dessen wert direkt an die LEDs angelegt \tiny(CD\textbackslash Code\textbackslash adc.c)\normalsize. Dass sich die Zahl beim auflegen des Fingers auf den Sensor verändert hat war ein kleines aber feines Erfolgserlebnis.
 
 \subsection{UART}
-Für die Kommunikation von UART haben wir einen kleinen Treiber geschrieben, welcher zum initialisieren von maximal 2 UART schnittstellen verwendet werden kann, eine Funktion um eine Zeichenkette zu lesen oder schreiben wird auch bereit gestellt \tiny(CD\textbackslash Code\textbackslash UART\textbackslash uart.c|h)\normalsize.
+Für die Kommunikation von UART haben wir einen kleinen Treiber geschrieben, welcher zum initialisieren von maximal 2 UART Schnittstellen verwendet werden kann, eine Funktion um eine Zeichenkette zu lesen oder schreiben wird auch bereit gestellt \tiny(CD\textbackslash Code\textbackslash UART\textbackslash uart.c|h)\normalsize.
 
 \subsection{SPI}
 Auch für die beiden SPI Schnittstellen wurde ein Treiber geschrieben, dieser ist ebenfalls auf der CD vorhanden\tiny(CD\textbackslash Code\textbackslash SPI\textbackslash spi.c|h)\normalsize.
-ein Beispielcode zum ansprechen der Siebensegmentanzeige befindet sich ebenfalls in diesem Ordner, hier ist es uns bis heute leider nicht gelungen, den Treiberbaustein korrekt einzustellen, die Funktionalität der SPI Schnittstelle ist aber bereits geprüft und funktioniert wie in diesem Beispielcode beschrieben.
+Ein Beispielcode zum ansprechen der Siebensegmentanzeige befindet sich ebenfalls in diesem Ordner, hier ist es uns bis heute leider nicht gelungen, den Treiberbaustein korrekt zu konfigurieren, die Funktionalität der SPI Schnittstelle ist aber bereits geprüft und funktioniert wie in diesem Beispielcode beschrieben.

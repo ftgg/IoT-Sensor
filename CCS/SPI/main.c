@@ -14,12 +14,19 @@
 #define OP_DECODEMODE  9
 #define OP_INTENSITY   10
 #define OP_SCANLIMIT   11
-#define OP_SHUTDOWN    12
-#define OP_DISPLAYTEST 15
+#define OP_SHUTDOWN    0x0C
+#define OP_DISPLAYTEST 0x0F
 
 void write(int device, char reg, char data);
 
+void halWait(int timeout) {
 
+    // This sequence uses exactly 8 clock cycles for each round
+    do {
+        _NOP();
+    } while (--timeout);
+
+}
 
 /*
  * interessanter Treiber : http://www.ccsinfo.com/forum/viewtopic.php?p=148855
@@ -31,9 +38,12 @@ int main(void) {
     char i = 0;
 
     init_spi_registers(0);
-    write(0,OP_DISPLAYTEST, 0x01);
-    write(0,OP_SHUTDOWN, !0x80);
-    write(0,OP_SCANLIMIT,!0);
+    write(0,OP_DISPLAYTEST, 0x00);
+    write(0,OP_FEATURE, 0b00000011);
+    //write(0,OP_DECODEMODE, 0x00);
+    //write(0,OP_INTENSITY, 0x00);
+    write(0,OP_SHUTDOWN, 0x81);
+    //write(0,OP_SCANLIMIT,3);
 
     //write(0,OP_FEATURE,0b00001000);
 
@@ -50,10 +60,9 @@ int main(void) {
 
     //write(0,OP_INTENSITY, 0);
   	while(1){
-  		int volatile wait = 0;
-  		write(0,OP_DIGIT0,i++);
-  		//write(0,OP_DISPLAYTEST,i++ & 0x01);
-  		while(++wait < 10000);
+  		i++;
+  		write(0,OP_DISPLAYTEST, i & 1);
+  		halWait(0xFFFE);
   	}
 
 	return 0;

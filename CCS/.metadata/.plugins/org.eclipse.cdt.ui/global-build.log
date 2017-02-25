@@ -1,0 +1,157 @@
+
+**** Build of configuration Debug for project SPI ****
+
+"C:\\Program Files\\TI\\ccsv6\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: MSP430 Compiler'
+"C:/Program Files/TI/ccsv6/tools/compiler/msp430_15.12.3.LTS/bin/cl430" -vmspx --use_hw_mpy=F5 --include_path="C:/Program Files/TI/ccsv6/ccs_base/msp430/include" --include_path="C:/Program Files/TI/ccsv6/tools/compiler/msp430_15.12.3.LTS/include" --advice:power=all -g --define=__MSP430FR5739__ --diag_warning=225 --display_error_number --diag_wrap=off --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU40 --printf_support=minimal --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
+"../main.c", line 25: remark #1527-D: (ULP 2.1) Detected SW delay loop using __no_operation. Recommend using a timer module instead
+"../main.c", line 69: warning #112-D: statement is unreachable
+'Finished building: ../main.c'
+' '
+'Building target: SPI.out'
+'Invoking: MSP430 Linker'
+"C:/Program Files/TI/ccsv6/tools/compiler/msp430_15.12.3.LTS/bin/cl430" -vmspx --use_hw_mpy=F5 --advice:power=all -g --define=__MSP430FR5739__ --diag_warning=225 --display_error_number --diag_wrap=off --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU40 --printf_support=minimal -z -m"SPI.map" --heap_size=160 --stack_size=160 --cinit_hold_wdt=on -i"C:/Program Files/TI/ccsv6/ccs_base/msp430/include" -i"C:/Program Files/TI/ccsv6/ccs_base/msp430/lib/5xx_6xx_FRxx" -i"C:/Program Files/TI/ccsv6/tools/compiler/msp430_15.12.3.LTS/lib" -i"C:/Program Files/TI/ccsv6/tools/compiler/msp430_15.12.3.LTS/include" --reread_libs --display_error_number --warn_sections --diag_wrap=off --xml_link_info="SPI_linkInfo.xml" --use_hw_mpy=F5 --rom_model -o "SPI.out" "./main.obj" "./spi.obj" "../lnk_msp430fr5739.cmd"  -llibmath.a -llibc.a 
+<Linking>
+remark #10371-D: (ULP 1.1) Detected no uses of low power mode state changing instructions
+remark #10372-D: (ULP 4.1) Detected uninitialized Port A in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+remark #10372-D: (ULP 4.1) Detected uninitialized Port B in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+'Finished building target: SPI.out'
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project SPI ****
+
+"C:\\Program Files\\TI\\ccsv6\\utils\\bin\\gmake" -k all 
+gmake: Nothing to be done for 'all'.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project SPI ****
+
+"C:\\Program Files\\TI\\ccsv6\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: MSP430 Compiler'
+"C:/Program Files/TI/ccsv6/tools/compiler/msp430_15.12.3.LTS/bin/cl430" -vmspx --use_hw_mpy=F5 --include_path="C:/Program Files/TI/ccsv6/ccs_base/msp430/include" --include_path="C:/Program Files/TI/ccsv6/tools/compiler/msp430_15.12.3.LTS/include" --advice:power=all -g --define=__MSP430FR5739__ --diag_warning=225 --display_error_number --diag_wrap=off --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU40 --printf_support=minimal --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
+"../main.c", line 25: remark #1527-D: (ULP 2.1) Detected SW delay loop using __no_operation. Recommend using a timer module instead
+"../main.c", line 69: warning #112-D: statement is unreachable
+'Finished building: ../main.c'
+' '
+'Building target: SPI.out'
+'Invoking: MSP430 Linker'
+"C:/Program Files/TI/ccsv6/tools/compiler/msp430_15.12.3.LTS/bin/cl430" -vmspx --use_hw_mpy=F5 --advice:power=all -g --define=__MSP430FR5739__ --diag_warning=225 --display_error_number --diag_wrap=off --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU40 --printf_support=minimal -z -m"SPI.map" --heap_size=160 --stack_size=160 --cinit_hold_wdt=on -i"C:/Program Files/TI/ccsv6/ccs_base/msp430/include" -i"C:/Program Files/TI/ccsv6/ccs_base/msp430/lib/5xx_6xx_FRxx" -i"C:/Program Files/TI/ccsv6/tools/compiler/msp430_15.12.3.LTS/lib" -i"C:/Program Files/TI/ccsv6/tools/compiler/msp430_15.12.3.LTS/include" --reread_libs --display_error_number --warn_sections --diag_wrap=off --xml_link_info="SPI_linkInfo.xml" --use_hw_mpy=F5 --rom_model -o "SPI.out" "./main.obj" "./spi.obj" "../lnk_msp430fr5739.cmd"  -llibmath.a -llibc.a 
+<Linking>
+remark #10371-D: (ULP 1.1) Detected no uses of low power mode state changing instructions
+remark #10372-D: (ULP 4.1) Detected uninitialized Port A in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+remark #10372-D: (ULP 4.1) Detected uninitialized Port B in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+'Finished building target: SPI.out'
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project SPI ****
+
+"C:\\Program Files\\TI\\ccsv6\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: MSP430 Compiler'
+"C:/Program Files/TI/ccsv6/tools/compiler/msp430_15.12.3.LTS/bin/cl430" -vmspx --use_hw_mpy=F5 --include_path="C:/Program Files/TI/ccsv6/ccs_base/msp430/include" --include_path="C:/Program Files/TI/ccsv6/tools/compiler/msp430_15.12.3.LTS/include" --advice:power=all -g --define=__MSP430FR5739__ --diag_warning=225 --display_error_number --diag_wrap=off --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU40 --printf_support=minimal --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
+"../main.c", line 25: remark #1527-D: (ULP 2.1) Detected SW delay loop using __no_operation. Recommend using a timer module instead
+"../main.c", line 69: warning #112-D: statement is unreachable
+'Finished building: ../main.c'
+' '
+'Building target: SPI.out'
+'Invoking: MSP430 Linker'
+"C:/Program Files/TI/ccsv6/tools/compiler/msp430_15.12.3.LTS/bin/cl430" -vmspx --use_hw_mpy=F5 --advice:power=all -g --define=__MSP430FR5739__ --diag_warning=225 --display_error_number --diag_wrap=off --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU40 --printf_support=minimal -z -m"SPI.map" --heap_size=160 --stack_size=160 --cinit_hold_wdt=on -i"C:/Program Files/TI/ccsv6/ccs_base/msp430/include" -i"C:/Program Files/TI/ccsv6/ccs_base/msp430/lib/5xx_6xx_FRxx" -i"C:/Program Files/TI/ccsv6/tools/compiler/msp430_15.12.3.LTS/lib" -i"C:/Program Files/TI/ccsv6/tools/compiler/msp430_15.12.3.LTS/include" --reread_libs --display_error_number --warn_sections --diag_wrap=off --xml_link_info="SPI_linkInfo.xml" --use_hw_mpy=F5 --rom_model -o "SPI.out" "./main.obj" "./spi.obj" "../lnk_msp430fr5739.cmd"  -llibmath.a -llibc.a 
+<Linking>
+remark #10371-D: (ULP 1.1) Detected no uses of low power mode state changing instructions
+remark #10372-D: (ULP 4.1) Detected uninitialized Port A in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+remark #10372-D: (ULP 4.1) Detected uninitialized Port B in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+'Finished building target: SPI.out'
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project SPI ****
+
+"C:\\Program Files\\TI\\ccsv6\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: MSP430 Compiler'
+"C:/Program Files/TI/ccsv6/tools/compiler/msp430_15.12.3.LTS/bin/cl430" -vmspx --use_hw_mpy=F5 --include_path="C:/Program Files/TI/ccsv6/ccs_base/msp430/include" --include_path="C:/Program Files/TI/ccsv6/tools/compiler/msp430_15.12.3.LTS/include" --advice:power=all -g --define=__MSP430FR5739__ --diag_warning=225 --display_error_number --diag_wrap=off --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU40 --printf_support=minimal --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
+"../main.c", line 25: remark #1527-D: (ULP 2.1) Detected SW delay loop using __no_operation. Recommend using a timer module instead
+"../main.c", line 69: warning #112-D: statement is unreachable
+'Finished building: ../main.c'
+' '
+'Building target: SPI.out'
+'Invoking: MSP430 Linker'
+"C:/Program Files/TI/ccsv6/tools/compiler/msp430_15.12.3.LTS/bin/cl430" -vmspx --use_hw_mpy=F5 --advice:power=all -g --define=__MSP430FR5739__ --diag_warning=225 --display_error_number --diag_wrap=off --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU40 --printf_support=minimal -z -m"SPI.map" --heap_size=160 --stack_size=160 --cinit_hold_wdt=on -i"C:/Program Files/TI/ccsv6/ccs_base/msp430/include" -i"C:/Program Files/TI/ccsv6/ccs_base/msp430/lib/5xx_6xx_FRxx" -i"C:/Program Files/TI/ccsv6/tools/compiler/msp430_15.12.3.LTS/lib" -i"C:/Program Files/TI/ccsv6/tools/compiler/msp430_15.12.3.LTS/include" --reread_libs --display_error_number --warn_sections --diag_wrap=off --xml_link_info="SPI_linkInfo.xml" --use_hw_mpy=F5 --rom_model -o "SPI.out" "./main.obj" "./spi.obj" "../lnk_msp430fr5739.cmd"  -llibmath.a -llibc.a 
+<Linking>
+remark #10371-D: (ULP 1.1) Detected no uses of low power mode state changing instructions
+remark #10372-D: (ULP 4.1) Detected uninitialized Port A in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+remark #10372-D: (ULP 4.1) Detected uninitialized Port B in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+'Finished building target: SPI.out'
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project SPI ****
+
+"C:\\Program Files\\TI\\ccsv6\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: MSP430 Compiler'
+"C:/Program Files/TI/ccsv6/tools/compiler/msp430_15.12.3.LTS/bin/cl430" -vmspx --use_hw_mpy=F5 --include_path="C:/Program Files/TI/ccsv6/ccs_base/msp430/include" --include_path="C:/Program Files/TI/ccsv6/tools/compiler/msp430_15.12.3.LTS/include" --advice:power=all -g --define=__MSP430FR5739__ --diag_warning=225 --display_error_number --diag_wrap=off --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU40 --printf_support=minimal --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
+
+>> Compilation failure
+subdir_rules.mk:7: recipe for target 'main.obj' failed
+"../main.c", line 25: remark #1527-D: (ULP 2.1) Detected SW delay loop using __no_operation. Recommend using a timer module instead
+"../main.c", line 65: error #66: expected a ";"
+"../main.c", line 69: warning #112-D: statement is unreachable
+1 error detected in the compilation of "../main.c".
+gmake: *** [main.obj] Error 1
+gmake: Target 'all' not remade because of errors.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project SPI ****
+
+"C:\\Program Files\\TI\\ccsv6\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: MSP430 Compiler'
+"C:/Program Files/TI/ccsv6/tools/compiler/msp430_15.12.3.LTS/bin/cl430" -vmspx --use_hw_mpy=F5 --include_path="C:/Program Files/TI/ccsv6/ccs_base/msp430/include" --include_path="C:/Program Files/TI/ccsv6/tools/compiler/msp430_15.12.3.LTS/include" --advice:power=all -g --define=__MSP430FR5739__ --diag_warning=225 --display_error_number --diag_wrap=off --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU40 --printf_support=minimal --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
+"../main.c", line 25: remark #1527-D: (ULP 2.1) Detected SW delay loop using __no_operation. Recommend using a timer module instead
+"../main.c", line 69: warning #112-D: statement is unreachable
+'Finished building: ../main.c'
+' '
+'Building target: SPI.out'
+'Invoking: MSP430 Linker'
+"C:/Program Files/TI/ccsv6/tools/compiler/msp430_15.12.3.LTS/bin/cl430" -vmspx --use_hw_mpy=F5 --advice:power=all -g --define=__MSP430FR5739__ --diag_warning=225 --display_error_number --diag_wrap=off --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU40 --printf_support=minimal -z -m"SPI.map" --heap_size=160 --stack_size=160 --cinit_hold_wdt=on -i"C:/Program Files/TI/ccsv6/ccs_base/msp430/include" -i"C:/Program Files/TI/ccsv6/ccs_base/msp430/lib/5xx_6xx_FRxx" -i"C:/Program Files/TI/ccsv6/tools/compiler/msp430_15.12.3.LTS/lib" -i"C:/Program Files/TI/ccsv6/tools/compiler/msp430_15.12.3.LTS/include" --reread_libs --display_error_number --warn_sections --diag_wrap=off --xml_link_info="SPI_linkInfo.xml" --use_hw_mpy=F5 --rom_model -o "SPI.out" "./main.obj" "./spi.obj" "../lnk_msp430fr5739.cmd"  -llibmath.a -llibc.a 
+<Linking>
+remark #10371-D: (ULP 1.1) Detected no uses of low power mode state changing instructions
+remark #10372-D: (ULP 4.1) Detected uninitialized Port A in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+remark #10372-D: (ULP 4.1) Detected uninitialized Port B in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+'Finished building target: SPI.out'
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project SPI ****
+
+"C:\\Program Files\\TI\\ccsv6\\utils\\bin\\gmake" -k all 
+'Building file: ../main.c'
+'Invoking: MSP430 Compiler'
+"C:/Program Files/TI/ccsv6/tools/compiler/msp430_15.12.3.LTS/bin/cl430" -vmspx --use_hw_mpy=F5 --include_path="C:/Program Files/TI/ccsv6/ccs_base/msp430/include" --include_path="C:/Program Files/TI/ccsv6/tools/compiler/msp430_15.12.3.LTS/include" --advice:power=all -g --define=__MSP430FR5739__ --diag_warning=225 --display_error_number --diag_wrap=off --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU40 --printf_support=minimal --preproc_with_compile --preproc_dependency="main.d"  "../main.c"
+"../main.c", line 25: remark #1527-D: (ULP 2.1) Detected SW delay loop using __no_operation. Recommend using a timer module instead
+"../main.c", line 68: warning #112-D: statement is unreachable
+'Finished building: ../main.c'
+' '
+'Building target: SPI.out'
+'Invoking: MSP430 Linker'
+"C:/Program Files/TI/ccsv6/tools/compiler/msp430_15.12.3.LTS/bin/cl430" -vmspx --use_hw_mpy=F5 --advice:power=all -g --define=__MSP430FR5739__ --diag_warning=225 --display_error_number --diag_wrap=off --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU40 --printf_support=minimal -z -m"SPI.map" --heap_size=160 --stack_size=160 --cinit_hold_wdt=on -i"C:/Program Files/TI/ccsv6/ccs_base/msp430/include" -i"C:/Program Files/TI/ccsv6/ccs_base/msp430/lib/5xx_6xx_FRxx" -i"C:/Program Files/TI/ccsv6/tools/compiler/msp430_15.12.3.LTS/lib" -i"C:/Program Files/TI/ccsv6/tools/compiler/msp430_15.12.3.LTS/include" --reread_libs --display_error_number --warn_sections --diag_wrap=off --xml_link_info="SPI_linkInfo.xml" --use_hw_mpy=F5 --rom_model -o "SPI.out" "./main.obj" "./spi.obj" "../lnk_msp430fr5739.cmd"  -llibmath.a -llibc.a 
+<Linking>
+remark #10371-D: (ULP 1.1) Detected no uses of low power mode state changing instructions
+remark #10372-D: (ULP 4.1) Detected uninitialized Port A in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+remark #10372-D: (ULP 4.1) Detected uninitialized Port B in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+'Finished building target: SPI.out'
+' '
+
+**** Build Finished ****

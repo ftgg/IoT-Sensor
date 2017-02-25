@@ -4,13 +4,13 @@
 
 SHELL = cmd.exe
 
-CG_TOOL_ROOT := C:/ti/ccsv6/tools/compiler/msp430_15.12.3.LTS
+CG_TOOL_ROOT := C:/Program Files/TI/ccsv6/tools/compiler/msp430_15.12.3.LTS
 
 GEN_OPTS__FLAG := 
 GEN_CMDS__FLAG := 
 
 ORDERED_OBJS += \
-"./main.obj" \
+"./uart.obj" \
 "../lnk_msp430fr5739.cmd" \
 $(GEN_CMDS__FLAG) \
 -llibmath.a \
@@ -121,40 +121,40 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXE_OUTPUTS += \
-UART_TEST.out \
+UART.out \
 
 EXE_OUTPUTS__QUOTED += \
-"UART_TEST.out" \
+"UART.out" \
 
 BIN_OUTPUTS += \
-UART_TEST.hex \
+UART.hex \
 
 BIN_OUTPUTS__QUOTED += \
-"UART_TEST.hex" \
+"UART.hex" \
 
 
 # All Target
-all: UART_TEST.out
+all: UART.out
 
 # Tool invocations
-UART_TEST.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
+UART.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: MSP430 Linker'
-	"C:/ti/ccsv6/tools/compiler/msp430_15.12.3.LTS/bin/cl430" -vmspx --use_hw_mpy=F5 --advice:power=all -g --define=__MSP430FR5739__ --diag_warning=225 --diag_wrap=off --display_error_number --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU40 --printf_support=minimal -z -m"UART_TEST.map" --stack_size=160 --heap_size=160 --cinit_hold_wdt=on -i"C:/ti/ccsv6/ccs_base/msp430/include" -i"C:/ti/ccsv6/ccs_base/msp430/lib/5xx_6xx_FRxx" -i"C:/ti/ccsv6/tools/compiler/msp430_15.12.3.LTS/lib" -i"C:/ti/ccsv6/tools/compiler/msp430_15.12.3.LTS/include" --reread_libs --warn_sections --display_error_number --diag_wrap=off --xml_link_info="UART_TEST_linkInfo.xml" --use_hw_mpy=F5 --rom_model -o "UART_TEST.out" $(ORDERED_OBJS)
+	"C:/Program Files/TI/ccsv6/tools/compiler/msp430_15.12.3.LTS/bin/cl430" -vmspx --use_hw_mpy=F5 --advice:power=all -g --define=__MSP430FR5739__ --diag_warning=225 --diag_wrap=off --display_error_number --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU40 --printf_support=minimal -z -m"UART.map" --stack_size=160 --heap_size=160 --cinit_hold_wdt=on -i"C:/Program Files/TI/ccsv6/ccs_base/msp430/include" -i"C:/Program Files/TI/ccsv6/ccs_base/msp430/lib/5xx_6xx_FRxx" -i"C:/Program Files/TI/ccsv6/tools/compiler/msp430_15.12.3.LTS/lib" -i"C:/Program Files/TI/ccsv6/tools/compiler/msp430_15.12.3.LTS/include" --reread_libs --warn_sections --display_error_number --diag_wrap=off --xml_link_info="UART_linkInfo.xml" --use_hw_mpy=F5 --rom_model -o "UART.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-UART_TEST.hex: $(EXE_OUTPUTS)
+UART.hex: $(EXE_OUTPUTS)
 	@echo 'Invoking: MSP430 Hex Utility'
-	"C:/ti/ccsv6/tools/compiler/msp430_15.12.3.LTS/bin/hex430" --memwidth=8 --romwidth=8 -o "UART_TEST.hex" $(EXE_OUTPUTS__QUOTED)
+	"C:/Program Files/TI/ccsv6/tools/compiler/msp430_15.12.3.LTS/bin/hex430" --memwidth=8 --romwidth=8 -o "UART.hex" $(EXE_OUTPUTS__QUOTED)
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
 	-$(RM) $(EXE_OUTPUTS__QUOTED)$(BIN_OUTPUTS__QUOTED)
-	-$(RM) "main.d" 
-	-$(RM) "main.obj" 
+	-$(RM) "uart.d" 
+	-$(RM) "uart.obj" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

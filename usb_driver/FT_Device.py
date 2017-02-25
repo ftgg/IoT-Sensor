@@ -1,6 +1,7 @@
 from ctypes import *
 from FT_declarations import *
-d2xx = WinDLL('ftd2xx')
+
+d2xx = WinDLL('/ftd2xx')
 
 
 class D2XXException (Exception):
