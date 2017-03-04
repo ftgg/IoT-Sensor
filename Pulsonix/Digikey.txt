@@ -9,7 +9,8 @@ http://www.digikey.de/product-detail/de/ams/AS1108WL-T/AS1108WL-TCT-ND/5131435
 
 7SEG:
 
-http://www.digikey.de/product-detail/de/lumex-opto-components-inc/LDQ-M286RI/67-1430-ND/252633
+http://www.digikey.de/product-detail/de/lumex-opto-components-inc/LDQ-M286RI/67-1430-ND/252633 (gemeinsamme Anode = falsch!)
+richtig wäre : http://www.digikey.de/product-detail/de/lumex-opto-components-inc/LDQ-N282RI/LDQ-N282RI-ND/515133 (gemeinsamme Katode) allerdings hier mindestbestellmenge 105 teile > 300€
 
 
 39,473684210526
