@@ -1,4 +1,5 @@
 import os.path
+import sys
 from MSP430 import *
 
 def cli(msp, showMsg=""):
@@ -17,6 +18,7 @@ def __handle_input(cmdString):
       HELP_STR = "Programm erzeugen:\n\n"
       HELP_STR += "\tes muss der Pfad zu einer .txt datei führen,\n\twelche dem TI_TXT hex format entspricht\n\n"
       HELP_STR += "Um diese zu erzeugen in den Projekteinstellungen folgendes tun:\n"
+      HELP_STR += "\t0. Rechtsklick auf das Projekt, dann 'Show_Build_Settings'\n"
       HELP_STR += "\t1. unter 'Build' Configuration auf Release stellen\n"
       HELP_STR += "\t2. unter 'MSP430 Hex Utility' haken bei Enable MSP430 \n\t   Hex Utility aktivieren\n"
       HELP_STR += "\t3. unter 'Output Format Options' das Output format auf \n\t   Output TI_TXT hex format setzen\n"
@@ -36,11 +38,11 @@ def __handle_input(cmdString):
       return -1
       
    if cmdString[0] == "d":
-      code, msp = __download(cmdString)
+      code, msp = __download(msp, cmdString)
       MSP = msp
       return code
 
-def __download(str):
+def __download(msp, str):
    if(len(str) < 7):
       print("Pfadangabe nötig (d C:/Users/.../out.txt)")
       return 0, None
@@ -59,6 +61,7 @@ def __download(str):
    try:
       msp.program(str[2:])
    except:
+      print("Could not program MSP430!")
       return -3, None
    print("Download erfolgreich!")
    return 1,msp
@@ -74,7 +77,7 @@ def __write(data):
 
 def main():
    WELCOME_STR = "MSP430 connector stellt eine Verbindung zu ihrem MSP430 her,\nmit h gelangen sie zur Hilfe\n\n"
-   
+
    msp = None
    try:     
       msp = MSP430.openDevice()
@@ -82,7 +85,13 @@ def main():
       print(err)
       return -1
    
+   if len(sys.argv) == 2: #annahme 3 = mit dateipfad
+      __download(msp, sys.argv[1])
+      return
+   
    retval = cli(msp,WELCOME_STR)
    while retval != -1:
       retval = cli(msp)
+   input()
+      
 main()

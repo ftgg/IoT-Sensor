@@ -1,10 +1,9 @@
 from time import sleep
 from FT_Device import *
 from FT_declarations import *
-from bitarray import bitarray
+#from bitarray import bitarray
 from ProgrammContainer import *
 import math as math
-#
 
 class BslVersion():
    def __init__(self,vendor,cmd_intptr,api,p_int):
