@@ -1,6 +1,7 @@
 from ctypes import *
 from FT_declarations import *
-d2xx = WinDLL('./lib/i386/ftd2xx')
+#d2xx = WinDLL('./lib/i386/ftd2xx') 32 bit
+d2xx = WinDLL('./lib/amd64/ftd2xx64')
 
 class D2XXException (Exception):
    def __init__(self, message):
